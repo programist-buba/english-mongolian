@@ -26,6 +26,16 @@ body {
     height: 8vh;
 }
 
+.menubar {
+    z-index: -1;
+    position: fixed;
+    float: left;
+    background-image: url(menubar.png);
+    background-repeat: no-repeat;
+    height: 8vh;
+    width: 50px;
+}
+
 .topnavbar {
     position: fixed;
     width: 100vw;
