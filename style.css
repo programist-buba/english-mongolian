@@ -5,6 +5,22 @@ body {
     width: 100vw;
 }
 
+@media only screen and (max-width:800px) {
+    /* For tablets: */
+    .main {
+      width: 80%;
+      padding: 0;
+    }
+    .right {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width:500px) {
+    /* For mobile phones: */
+    .menu, .main, .right {
+      width: 100%;
+    }
+  }
 
 .top{
     height: 8vh;
@@ -23,7 +39,6 @@ body {
     align-items: center;
     justify-content: center;
 }
-
 
 .choice {
     width: 100%;
