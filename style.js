@@ -1,7 +1,7 @@
 
 function green() {
     document.getElementById("word1").style.backgroundColor = "green";
-    document.getElementById("word1").classList.add("check");
+    document.getElementById("word1").classList.add("shakeme");
 }
 
 function red() {
