@@ -2,10 +2,16 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    width: 100vw;
+}
+
+
+.top{
+    height: 8vh;
 }
 
 .topnavbar {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 8vh;
     background-color: black;
@@ -18,13 +24,25 @@ body {
     justify-content: center;
 }
 
+
+.choice {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
 .word {
-    width: 50px;
-    height: 50px;
+    margin: 10px;
+    width: 25%;
+    height: 250px;
     border-style: solid;
     border-color: lightgray;
-    background-color: lightgrey;
+    background-color: lightgray;
     text-align: center;
+    /* position: absolute; */   
+    /* right: 45%; */
+    /* margin-top: 180px; */
 }
 
 .bottomnavbar {
