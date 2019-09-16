@@ -111,6 +111,37 @@ body {
     100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 
+#popup {
+    visibility: hidden;
+    width: 160px;
+    height: 40px;
+    background-color: #fff;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    margin-left: -80px;
+}
+
+#popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+
 #word2 {
     margin: 10px;
     width: 25%;
