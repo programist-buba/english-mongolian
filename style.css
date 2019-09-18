@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100vw;
-    background-color: #234DB4;
+    background-color: white;
 }
 
 @media only screen and (min-width:400px) and (max-width:800px) {
@@ -74,6 +74,10 @@ body {
     flex-direction: column;
 }
 
+#span {
+    margin-left: 20px;
+}
+
 #letter {
     height: 10vh;
     width: 10%;
@@ -89,7 +93,7 @@ body {
 }
 
 #word1 {
-    margin: 0px;
+    margin: 5px;
     width: 95%;
     height: 10vh;
     border-style: solid;
@@ -195,7 +199,7 @@ body {
 }
 
 #word2 {
-    margin: 0px;
+    margin: 5px;
     width: 95%;
     height: 10vh;
     border-style: solid;
@@ -230,7 +234,7 @@ body {
 }
 
 #word3 {
-    margin: 0px;
+    margin: 5px;
     width: 95%;
     display: flex;
     align-items: center;
@@ -245,7 +249,7 @@ body {
 }
 
 #word4 {
-    margin: 0px;
+    margin: 5px;
     width: 95%;
     display: flex;
     align-items: center;
@@ -260,7 +264,7 @@ body {
 }
 
 #word5 {
-    margin: 0px;
+    margin: 5px;
     width: 95%;
     display: flex;
     align-items: center;
