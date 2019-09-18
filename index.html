@@ -3,6 +3,22 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-firestore.js"></script>
+
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyAF07CWSjfZxEuQjfEI9M-0l2puNcUs6aE",
+            authDomain: "moen-22130.firebaseapp.com",
+            databaseURL: "https://moen-22130.firebaseio.com",
+            projectId: "moen-22130",
+            storageBucket: "moen-22130.appspot.com",
+            messagingSenderId: "227107602456",
+            appId: "1:227107602456:web:4b92ef488387f82adc036d"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
 </head>
 
 <body>
@@ -13,42 +29,34 @@
         <div class="popup2" id="popup2" style="font-size: 2vw;">-5</div>
         <div class="Score" id="score" style="font-size: 2vw">Score: 0</div>
     </div>
-    
+
     <div class="display-word">
-        <div class="display" style="font-size: 5vw;">WORD</div>
+        <div id = "question" class="display" style="font-size: 5vw;">WORD</div>
     </div>
     <div class="choice">
-        <div id="word1" onclick="green()" style="font-size: 2vw;">
-            <div id="letter">A</div>
-            <span id="span"></span>
-            WORD1
-        </div>
-        <div id="word2" onclick="red()" style="font-size: 2vw;">
+        
+        <!-- <div class="word" onclick="red()" style="font-size: 2vw;">
             <div id="letter">B</div>
-            <span id="span"></span>
-            WORD2
+            <span id="span">WORD2</span>
         </div>
-        <div id="word3" style="font-size: 2vw;">
+        <div class="word" style="font-size: 2vw;">
             <div id="letter">C</div>
-            <span id="span"></span>
-            WORD3
+            <span id="span">WORD3</span>
         </div>
-        <div id="word4" style="font-size: 2vw;">
+        <div class="word" style="font-size: 2vw;">
             <div id="letter">D</div>
-            <span id="span"></span>
-            WORD4
+            <span id="span">WORD4</span>
         </div>
-        <div id="word5" style="font-size: 2vw;">
+        <div class="word" style="font-size: 2vw;">
             <div id="letter">E</div>
-            <span id="span"></span>
-            WORD5
-        </div>
+            <span id="span">WORD5</span>
+        </div> -->
     </div>
 
     <div class="bottom">
-    <div class="bottomnavbar">Product by TEAM 1</div>
+        <div class="bottomnavbar">Product by TEAM 1</div>
     </div>
-    
+
     <script src="style.js"></script>
 </body>
 
