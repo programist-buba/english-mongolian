@@ -2,12 +2,12 @@ let val = 0;
 correct = 10;
 wrong = 5;
 
-function green(v) {
-    v.style.backgroundColor = "green";
-    v.classList.add("shake");
-    document.getElementById("word1").classList.add("shakeme");
-    var popup = document.getElementById("popup");
-    popup.classList.toggle("show");
+function green(f) {
+    f.style.backgroundColor = "green";
+    f.classList.add("shake");
+
+    f = document.getElementById("popup");
+    f.classList.toggle("show");
     val = val + correct;
     document.getElementById("score").innerHTML = "Score: " + val;
 }
@@ -15,8 +15,8 @@ function green(v) {
 function red(v) {
     v.style.backgroundColor = "red";
     v.classList.add("shake");
-    var popuptushig = document.getElementById("popup2");
-    popuptushig.classList.toggle("show2");
+    v = document.getElementById("popup2");
+    v.classList.toggle("show2");
     val = val - wrong;
     document.getElementById("score").innerHTML = "Score: " + val;
 }
@@ -26,7 +26,28 @@ function red(v) {
 const db = firebase.firestore();
 const questions = db.collection('questions');
 
-const q = questions.doc('oobcYsZKI1RAdqj7ISjx');
+// const q = questions.doc('oobcYsZKI1RAdqj7ISjx');
+
+var rnd = Math.floor(Math.random() * 2) + 1;
+
+questions.where("random", "==", rnd)
+    .get()
+    .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            var item = doc.data();
+            document.getElementById("question").innerHTML = item.question;
+
+            item.ans.forEach(function (i){
+                let el = createChoice(i.option, i.value, i.right);
+                document.getElementsByClassName('choice')[0].appendChild(el);
+            })
+        });
+    })
+    .catch(function(error) {
+        console.log("Error getting documents: ", error);
+    });
 
 
 function createChoice(option, value, right) {
@@ -53,23 +74,22 @@ function createChoice(option, value, right) {
     return choice;
 }
 
-q.get().then(function (doc) {
-    if (doc.exists) {
-        console.log("Document data:", doc.data());
-        var item = doc.data();
-        document.getElementById("question").innerHTML = item.question;
+// q.get().then(function (doc) {
+//     if (doc.exists) {
+//         console.log("Document data:", doc.data());
+//         var item = doc.data();
+//         document.getElementById("question").innerHTML = item.question;
 
-        item.ans.forEach(function (i){
-            let el = createChoice(i.option, i.value, i.right);
-            document.getElementsByClassName('choice')[0].appendChild(el);
-        })
-    } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-    }
-}).catch(function (error) {
-    console.log("Error getting document:", error);
-});
+//         item.ans.forEach(function (i){
+//             let el = createChoice(i.option, i.value, i.right);
+//             document.getElementsByClassName('choice')[0].appendChild(el);
+//         })
+//     } else {
+//         console.log("No such document!");
+//     }
+// }).catch(function (error) {
+//     console.log("Error getting document:", error);
+// });
 
 
 

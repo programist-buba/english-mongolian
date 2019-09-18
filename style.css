@@ -109,7 +109,7 @@ span {
 
 .shakeme {
     animation: shakeme 0.5s;
-    animation-iteration-count: 0.75;
+    animation-iteration-count: 0.5;
 }
 
 @keyframes shakeme {
