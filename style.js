@@ -28,13 +28,12 @@ const questions = db.collection('questions');
 
 // const q = questions.doc('oobcYsZKI1RAdqj7ISjx');
 
-var rnd = Math.floor(Math.random() * 2) + 1;
+var rnd = Math.floor(Math.random() * 4) + 1;
 
-questions.where("random", "==", rnd)
+questions.where("level", "==", 1).where("random", "==", rnd)
     .get()
     .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-            // doc.data() is never undefined for query doc snapshots
             console.log(doc.id, " => ", doc.data());
             var item = doc.data();
             document.getElementById("question").innerHTML = item.question;
@@ -42,19 +41,14 @@ questions.where("random", "==", rnd)
             item.ans.forEach(function (i){
                 let el = createChoice(i.option, i.value, i.right);
                 document.getElementsByClassName('choice')[0].appendChild(el);
-            })
+            }) 
         });
     })
     .catch(function(error) {
         console.log("Error getting documents: ", error);
     });
 
-
 function createChoice(option, value, right) {
-    // <div class="word" onclick="green()">
-    //     <div id="letter">A</div>
-    //     <span id="span">WORD1</span>
-    // </div>
     let choice = document.createElement('div');
     choice.className = 'word';
     choice.addEventListener('click', function(){
@@ -93,20 +87,20 @@ function createChoice(option, value, right) {
 
 
 
-// questions.add({
-//     question: "QUESTION IS WHATEVER ?? SASS ?",
-//     level: 1,
-//     ans: [
-//         {option: 'A', value: 'TEST1', right: true},
-//         {option: 'B', value: 'TEST2', right: false},
-//         {option: 'C', value: 'TEST3', right: false},
-//         {option: 'D', value: 'TEST4', right: false},
-//         {option: 'E', value: 'TEST5', right: false}
-//     ]
-// })
-// .then(function(docRef) {
-//     console.log("Document written with ID: ", docRef.id);
-// })
-// .catch(function(error) {
-//     console.error("Error adding document: ", error);
-// });
+questions.add({
+    question: "QUESTION IS WHATEVER ?? SASS ?",
+    level: 1,
+    ans: [
+        {option: 'A', value: 'TEST1', right: true},
+        {option: 'B', value: 'TEST2', right: false},
+        {option: 'C', value: 'TEST3', right: false},
+        {option: 'D', value: 'TEST4', right: false},
+        {option: 'E', value: 'TEST5', right: false}
+    ]
+})
+.then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+})
+.catch(function(error) {
+    console.error("Error adding document: ", error);
+});
