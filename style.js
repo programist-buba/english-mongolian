@@ -48,7 +48,19 @@ questions.where("level", "==", 1).where("random", "==", rnd)
         console.log("Error getting documents: ", error);
     });
 
+    //service cloud.firestore {
+        //match /databases/moen/documents; {
+            //match /VwKsk7GmVRmdMYlMbVvq/gamecreater/displayName/score/uid;
+            //match /VwKsk7GmVRmdMYlMbVvq/joiner/displayName/score/uid;
+           /// match /VwKsk7GmVRmdMYlMbVvq/questions/0;
+            //allow write;
+        //}
+    //}
 function createChoice(option, value, right) {
+    // <div class="word" onclick="green()">
+    //     <div id="letter">A</div>
+    //     <span id="span">WORD1</span>
+    // </div>
     let choice = document.createElement('div');
     choice.className = 'word';
     choice.addEventListener('click', function(){
