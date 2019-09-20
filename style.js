@@ -97,22 +97,20 @@ function createChoice(option, value, right) {
 //     console.log("Error getting document:", error);
 // });
 
-
-
-questions.add({
-    question: "QUESTION IS WHATEVER ?? SASS ?",
-    level: 1,
-    ans: [
-        {option: 'A', value: 'TEST1', right: true},
-        {option: 'B', value: 'TEST2', right: false},
-        {option: 'C', value: 'TEST3', right: false},
-        {option: 'D', value: 'TEST4', right: false},
-        {option: 'E', value: 'TEST5', right: false}
-    ]
-})
-.then(function(docRef) {
-    console.log("Document written with ID: ", docRef.id);
-})
-.catch(function(error) {
-    console.error("Error adding document: ", error);
-});
+//questions.add({
+    //question: "Hello",
+    //level: 1,
+    //ans: [
+        //{option: 'A', value: 'TEST1', right: true},
+        //{option: 'B', value: 'TEST2', right: false},
+        //{option: 'C', value: 'TEST3', right: false},
+        //{option: 'D', value: 'TEST4', right: false},
+        //{option: 'E', value: 'TEST5', right: false}
+    //]
+//})
+//.then(function(docRef) {
+    //console.log("Document written with ID: ", docRef.id);
+//})
+//.catch(function(error) {
+    //console.error("Error adding document: ", error);
+//});
