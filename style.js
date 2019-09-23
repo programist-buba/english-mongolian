@@ -59,13 +59,13 @@ function createChoice(option, value, right) {
         if (right == true){
             green(choice);
             delete callquestion();
-            delete createChoice();
+            delete choice;
             callquestion();
             createChoice();
         } else {
             red(choice);
             delete callquestion();
-            delete createChoice();
+            delete choice;
             callquestion();
             createChoice();
         }
