@@ -2,27 +2,20 @@ let val = 0;
 correct = 10;
 wrong = 5;
 
+let j = 0;
 
+let questionz = [1, 2, 3, 4, 5];
 
-let j = -1;
-
-let answer = [1, 2, 3, 4, 5];
-
-shuffle(answer);
-
-console.log(answer);
+shuffle(questionz);
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
   
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
   
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
@@ -53,15 +46,13 @@ function red(v) {
 const db = firebase.firestore();
 const questions = db.collection('questions');
 
-//const q = questions.doc('0BTuyHcS4EJHKV04DGA4');
 function callquestion() {
+   
+    let rnd = questionz[j];
     j++;
-    console.log(j);
-    let rnd = answer[j];
-    
     console.log(rnd); 
   
-    questions.where("level", "==", 1).where("question", "==", rnd)
+    questions.where("level", "==", 1).where("questionz", "==", rnd)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -70,10 +61,9 @@ function callquestion() {
 
                 document.getElementById("question").innerHTML = item.question;
                 document.getElementsByClassName('choice')[0].innerHTML ="";
-            
+
                 item.ans.forEach(function (i){
                     let el = createChoice(i.option, i.value, i.right);
-                    
                     document.getElementsByClassName('choice')[0].appendChild(el);
                 }) 
             })
@@ -86,33 +76,26 @@ function callquestion() {
 
 function createChoice(option, value, right) {
 
-    // <div class="word" onclick="green()">
-    //     <div id="letter">A</div>
-    //     <span id="span">WORD1</span>
-    // </div>
     let choice = document.createElement('div');
+
     choice.className = 'word';
     choice.addEventListener('click', function(){
         if (right == true){
-            
             green(choice);
-          
             callquestion();
-       
         } else {
             red(choice);
-         
             callquestion();
-      
         }
     });
+    console.log(option, value,right);
     let letter = document.createElement('div');
     letter.className = 'letter';
     letter.innerHTML = option;
     choice.appendChild(letter);
-    let answer = document.createElement('span');
-    answer.innerHTML = value;
-    choice.appendChild(answer);
+    let question = document.createElement('span');
+    question.innerHTML = value;
+    choice.appendChild(question);
     return choice;
 }
 
@@ -134,19 +117,20 @@ function createChoice(option, value, right) {
 // });
 
 // questions.add({
-//     question: "Level 2: 1",
+//     question: "afdsa",
 //     level: 2,
+//     questionz: 5,
 //     ans: [
-//         {option: 'A', value: 'TEST1', right: true},
-//         {option: 'B', value: 'TEST2', right: false},
-//         {option: 'C', value: 'TEST3', right: false},
-//         {option: 'D', value: 'TEST4', right: false},
-//         {option: 'E', value: 'TEST5', right: false}
+//         {option: 'A', value: 'Car', right: false},
+//         {option: 'B', value: 'Plane', right: true},
+//         {option: 'C', value: 'Submarine', right: false},
+//         {option: 'D', value: 'Metro', right: false},
+//         {option: 'E', value: 'Truck', right: true}
 //     ]
 // })
 // .then(function(docRef) {
 //     console.log("Document written with ID: ", docRef.id);
 // })
-// .catch(function(error) {
-//     //console.error("Error adding document: ", error);
+//     .catch(function(error) {
+//     console.error("Error adding document: ", error);
 // });
