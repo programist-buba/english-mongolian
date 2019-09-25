@@ -2,6 +2,35 @@ let val = 0;
 correct = 10;
 wrong = 5;
 
+
+
+let j = -1;
+
+let answer = [1, 2, 3, 4, 5];
+
+shuffle(answer);
+
+console.log(answer);
+
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+  
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+  
+    return array;
+  }
+
 function green(f) {
     f.style.backgroundColor = "green";
     f.classList.add("shake");
@@ -26,18 +55,25 @@ const questions = db.collection('questions');
 
 //const q = questions.doc('0BTuyHcS4EJHKV04DGA4');
 function callquestion() {
-    var rnd = Math.floor(Math.random() * 5) + 1;
-
+    j++;
+    console.log(j);
+    let rnd = answer[j];
+    
+    console.log(rnd); 
+  
     questions.where("level", "==", 1).where("question", "==", rnd)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
                 console.log(doc.id, " => ", doc.data());
                 var item = doc.data();
-                document.getElementById("question").innerHTML = item.question;
 
+                document.getElementById("question").innerHTML = item.question;
+                document.getElementsByClassName('choice')[0].innerHTML ="";
+            
                 item.ans.forEach(function (i){
                     let el = createChoice(i.option, i.value, i.right);
+                    
                     document.getElementsByClassName('choice')[0].appendChild(el);
                 }) 
             })
@@ -49,6 +85,7 @@ function callquestion() {
     callquestion();
 
 function createChoice(option, value, right) {
+
     // <div class="word" onclick="green()">
     //     <div id="letter">A</div>
     //     <span id="span">WORD1</span>
@@ -57,17 +94,16 @@ function createChoice(option, value, right) {
     choice.className = 'word';
     choice.addEventListener('click', function(){
         if (right == true){
+            
             green(choice);
-            delete callquestion();
-            delete choice;
+          
             callquestion();
-            createChoice();
+       
         } else {
             red(choice);
-            delete callquestion();
-            delete choice;
+         
             callquestion();
-            createChoice();
+      
         }
     });
     let letter = document.createElement('div');
