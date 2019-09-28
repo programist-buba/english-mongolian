@@ -74,21 +74,37 @@ function callquestion() {
             console.log("Error getting documents: ", error);
         });
 
-    level2.where("level", "==", 1).where("questionz", "==", rnd)
-        .get()
-        .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                console.log(doc.id, " => ", doc.data());
-                var item = doc.data();
-                document.getElementById("question").innerHTML = item.question;
-                document.getElementsByClassName('choice')[0].innerHTML ="";
-                item.ans.forEach(function (i){
-                    let el = createChoice(i.option, i.value, i.right);
-                    document.getElementsByClassName('choice')[0].appendChild(el);
+}
+    callquestion();
+
+    function callquestion2() {
+   
+        let rnd = questionz[j];
+        j++;
+        console.log(rnd); 
+      
+        level2.where("level", "==", 2).where("questionz", "==", rnd)
+            .get()
+            .then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    console.log(doc.id, " => ", doc.data());
+                    var item = doc.data();
+    
+                    document.getElementById("question").innerHTML = item.question;
+                    document.getElementsByClassName('choice')[0].innerHTML ="";
+    
+                    item.ans.forEach(function (i){
+                        let el = createChoice(i.option, i.value, i.right);
+                        document.getElementsByClassName('choice')[0].appendChild(el);
+                    }) 
                 })
             })
-        })
-}
+            .catch(function(error) {
+                console.log("Error getting documents: ", error);
+            });
+    
+    }
+
     callquestion();
 
 
