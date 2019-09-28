@@ -1,6 +1,11 @@
 let val = 0;
-correct = 10;
-wrong = 5;
+let correct = 10;
+let wrong = 5;
+
+
+let correctStreak = 0;
+let currentLvl = 1;
+
 
 let j = 0;
 
@@ -45,16 +50,14 @@ function red(v) {
 
 const db = firebase.firestore();
 const questions = db.collection('questions');
-const level1 = db.collection('level1');
-const level2 = db.collection('level2');
 
 function callquestion() {
    
     let rnd = questionz[j];
     j++;
-    console.log(rnd); 
+    console.log(currentLvl, rnd); 
   
-    level1.where("level", "==", 1).where("questionz", "==", rnd)
+    questions.where("level", "==", currentLvl).where("questionz", "==", rnd)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -77,43 +80,31 @@ function callquestion() {
 }
     callquestion();
 
-    function callquestion2() {
-   
-        let rnd = questionz[j];
-        j++;
-        console.log(rnd); 
-      
-        level2.where("level", "==", 2).where("questionz", "==", rnd)
-            .get()
-            .then(function(querySnapshot) {
-                querySnapshot.forEach(function(doc) {
-                    console.log(doc.id, " => ", doc.data());
-                    var item = doc.data();
-    
-                    document.getElementById("question").innerHTML = item.question;
-                    document.getElementsByClassName('choice')[0].innerHTML ="";
-    
-                    item.ans.forEach(function (i){
-                        let el = createChoice(i.option, i.value, i.right);
-                        document.getElementsByClassName('choice')[0].appendChild(el);
-                    }) 
-                })
-            })
-            .catch(function(error) {
-                console.log("Error getting documents: ", error);
-            });
-    
-    }
-
-    callquestion();
-
-
 function createChoice(option, value, right) {
 
     let choice = document.createElement('div');
 
     choice.className = 'word';
     choice.addEventListener('click', function(){
+        correctStreak++;
+        if (correctStreak == 5){
+            currentLvl++;
+            shuffle(questionz);
+            j = 0;
+        }
+        if (correctStreak == 10){
+            currentLvl++;
+            shuffle(questionz);
+            j = 0;
+        }
+        if (correctStreak == 15){
+            currentLvl++;
+            shuffle(questionz)
+            j = 0;
+        }
+        if (correctStreak == 20){
+            
+        }
         if (right == true){
             green(choice);
             callquestion();
@@ -133,33 +124,16 @@ function createChoice(option, value, right) {
     return choice;
 }
 
-// questions.get().then(function (doc) {
-//      if (doc.exists) {
-//          console.log("Document data:", doc.data());
-//          var item = doc.data();
-//          document.getElementById("question").innerHTML = item.question;
-
-//          item.ans.forEach(function (i){
-//              let el = createChoice(i.option, i.value, i.right);
-//              document.getElementsByClassName('choice')[0].appendChild(el);
-//          })
-//      } else {
-//          console.log("No such document!");
-//      }
-//  }).catch(function (error) {
-//      console.log("Error getting document:", error);
-// });
-
-// level2.add({
+// questions.add({
 //     question: "jfdk",
-//     level: 2,
-//     questionz: 1,
+//     level: 4,
+//     questionz: 5,
 //     ans: [
-//         {option: 'A', value: 'Truck', right: false},
-//         {option: 'B', value: 'Train', right: false},
-//         {option: 'C', value: 'Car', right: true},
-//         {option: 'D', value: 'Plane', right: false},
-//         {option: 'E', value: 'Boat', right: false}
+//         {option: 'A', value: 'Teacher', right: false},
+//         {option: 'B', value: 'Cashier', right: false},
+//         {option: 'C', value: 'Police', right: false},
+//         {option: 'D', value: 'Doctor', right: false},
+//         {option: 'E', value: 'Engineer', right: true}
 //     ]
 // })
 // .then(function(docRef) {
