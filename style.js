@@ -45,6 +45,8 @@ function red(v) {
 
 const db = firebase.firestore();
 const questions = db.collection('questions');
+const level1 = db.collection('level1');
+const level2 = db.collection('level2');
 
 function callquestion() {
    
@@ -52,7 +54,7 @@ function callquestion() {
     j++;
     console.log(rnd); 
   
-    questions.where("level", "==", 1).where("questionz", "==", rnd)
+    level1.where("level", "==", 1).where("questionz", "==", rnd)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -71,8 +73,24 @@ function callquestion() {
         .catch(function(error) {
             console.log("Error getting documents: ", error);
         });
+
+    level2.where("level", "==", 1).where("questionz", "==", rnd)
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                console.log(doc.id, " => ", doc.data());
+                var item = doc.data();
+                document.getElementById("question").innerHTML = item.question;
+                document.getElementsByClassName('choice')[0].innerHTML ="";
+                item.ans.forEach(function (i){
+                    let el = createChoice(i.option, i.value, i.right);
+                    document.getElementsByClassName('choice')[0].appendChild(el);
+                })
+            })
+        })
 }
     callquestion();
+
 
 function createChoice(option, value, right) {
 
@@ -116,16 +134,16 @@ function createChoice(option, value, right) {
 //      console.log("Error getting document:", error);
 // });
 
-// questions.add({
-//     question: "afdsa",
+// level2.add({
+//     question: "jfdk",
 //     level: 2,
-//     questionz: 5,
+//     questionz: 1,
 //     ans: [
-//         {option: 'A', value: 'Car', right: false},
-//         {option: 'B', value: 'Plane', right: true},
-//         {option: 'C', value: 'Submarine', right: false},
-//         {option: 'D', value: 'Metro', right: false},
-//         {option: 'E', value: 'Truck', right: true}
+//         {option: 'A', value: 'Truck', right: false},
+//         {option: 'B', value: 'Train', right: false},
+//         {option: 'C', value: 'Car', right: true},
+//         {option: 'D', value: 'Plane', right: false},
+//         {option: 'E', value: 'Boat', right: false}
 //     ]
 // })
 // .then(function(docRef) {
