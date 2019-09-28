@@ -103,7 +103,7 @@ function createChoice(option, value, right) {
             j = 0;
         }
         if (correctStreak == 20){
-            
+            window.location.href = "file:///Users/Tushig/Desktop/english-mongolian/score.html"
         }
         if (right == true){
             green(choice);
