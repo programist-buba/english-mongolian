@@ -112,7 +112,7 @@ function createChoice(option, value, right) {
             callquestion();
         }
     });
-    console.log(option, value,right);
+    console.log(option, value, right);
     let letter = document.createElement('div');
     letter.className = 'letter';
     letter.innerHTML = option;
