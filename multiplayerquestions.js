@@ -32,7 +32,6 @@ function shuffle(array) {
 function green(f) {
     f.style.backgroundColor = "green";
     f.classList.add("shake");
-
     f = document.getElementById("popup");
     f.classList.toggle("show");
     val = val + correct;
