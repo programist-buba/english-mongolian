@@ -119,6 +119,7 @@ function createChoice(option, value, right) {
     choice.appendChild(letter);
     let question = document.createElement('span');
     question.innerHTML = value;
+    // value.style.fontSize = "150%";
     choice.appendChild(question);
     return choice;
 }
